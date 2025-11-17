@@ -1,7 +1,5 @@
 import { ethers } from 'ethers';
-
-const contractABI = []; // replace
-const contractAddress = ""; // replace 
+import { ADDRESS, ABI } from "./config.js";
 
 export const connectWallet = async () => {
   if (window.ethereum) {
@@ -20,7 +18,7 @@ export const connectWallet = async () => {
 };
 
 export const mintNFT = async (signer, toAddress, tokenURI) => {
-  const contract = new ethers.Contract(contractAddress, contractABI, signer);
+  const contract = new ethers.Contract(ADDRESS, ABI, signer);
   try {
     const tx = await contract.createNFT(toAddress, tokenURI);
     console.log('Transaction Sent:', tx);

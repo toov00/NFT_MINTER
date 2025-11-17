@@ -24,11 +24,11 @@ A user-friendly desktop + browser application designed to seamlessly mint NFTs!
    ```sh
    npm install
    ```
-3. Enter your smart contract's ABI in `config.js`
+3. Enter your smart contract's ABI in `src/config.js`
    ```js
-   const ABI = 'ENTER ABI';
+   const ABI = [ENTER ABI];
    ```
-4. Enter your smart contract's ADDRESS in `config.js`
+4. Enter your smart contract's ADDRESS in `src/config.js`
    ```js
    const ADDRESS = 'ENTER ADDRESS';
    ```

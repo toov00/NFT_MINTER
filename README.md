@@ -44,5 +44,5 @@ A user-friendly desktop + browser application designed to seamlessly mint NFTs!
 
 ## Roadmap
 
-- [x] Add Usage
-- [ ] Reframe as chrome extension
+- [x] Add Usage details
+- [ ] Reframe as Chrome Extension

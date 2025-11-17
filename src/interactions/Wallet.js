@@ -1,7 +1,5 @@
 import { ethers } from 'ethers';
-
-const abi = []; // replace
-const contractAddress = ""; // replace
+import { ADDRESS, ABI } from "../config.js";
 
 async function setupEthereum() {
   if (typeof window.ethereum === 'undefined') {
@@ -46,7 +44,7 @@ async function mintNFT() {
   }
 
   try {
-    const contract = new ethers.Contract(contractAddress, abi, signer);
+    const contract = new ethers.Contract(ADDRESS, ABI, signer);
     const tokenId = Math.floor(Math.random() * 10000);
     console.log("Minting token with ID:", tokenId);
 

@@ -40,3 +40,4 @@ A user-friendly desktop + browser application designed to seamlessly mint NFTs!
    npm run dev
    ```
 2. Click the button in the pop-up to connect your wallet and start minting your NFT!
+   ![Example Image](popupwindow.png)

@@ -39,7 +39,7 @@ A user-friendly desktop + browser application designed to seamlessly mint NFTs!
    ```sh
    npm run dev
    ```
-2. On either the pop-up / localhost:5173, click the button to connect your wallet and start minting your NFT!
+2. Click the button to connect your wallet and start minting your NFT!
    ![Example Image](popupwindow.png)
 
 ## Roadmap

@@ -1,48 +1,85 @@
+# NFT Minter
 
-# NFT MINTER
+A user-friendly desktop + browser application designed to seamlessly mint NFTs on Ethereum-compatible networks.
 
-A user-friendly desktop + browser application designed to seamlessly mint NFTs!
+## Features
+
+* One-click wallet connection via MetaMask
+* Simple interface for minting NFTs
+* Cross-platform support (desktop via Electron, browser via React)
+* Custom smart contract integration
 
 ## Getting Started
 
 ### Prerequisites
 
-* Install modules
-  ```sh
+* Node.js (v16+)
+```sh
   brew install nvm
-  ```
-* Install a wallet desktop app (currently, only MetaMask is supported!)
-* Compile & deploy your desired smart contract, taking note of the ABI and address
-  
+  nvm install 16
+  nvm use 16
+```
+* MetaMask wallet extension or desktop app installed
+* A deployed ERC-721 smart contract (you'll need the ABI and contract address)
+
 ### Installation
 
 1. Clone the repo
-   ```sh
+```sh
    git clone https://github.com/toov00/NFT_MINTER.git
-   ```
-2. Install NPM packages
-   ```sh
+   cd NFT_MINTER
+```
+2. Install dependencies
+```sh
    npm install
-   ```
-3. Enter your smart contract's ABI in `src/config.js`
-   ```js
-   const ABI = [ENTER ABI];
-   ```
-4. Enter your smart contract's ADDRESS in `src/config.js`
-   ```js
-   const ADDRESS = 'ENTER ADDRESS';
-   ```
+```
+3. Configure your smart contract in `src/config.js`
+```js
+   const ABI = [
+     // Paste your contract ABI here
+   ];
+
+   const ADDRESS = '0x...';  // Your contract address
+```
 
 ## Usage
 
-1. Run the React and Electron services
-   ```sh
+1. Start the application
+```sh
    npm run dev
-   ```
-2. Click the button to connect your wallet and start minting your NFT!
-   ![Example Image](popupwindow.png)
+```
+2. Connect your MetaMask wallet when prompted
+3. Click the mint button to create your NFT!
+
+   ![Minting Interface](popupwindow.png)
+
+## Tech Stack
+
+* React
+* Electron
+* ethers.js / web3.js
+* MetaMask SDK
 
 ## Roadmap
 
-- [x] Add Usage details
-- [ ] Reframe as Chrome Extension
+- [x] Core minting functionality
+- [x] MetaMask wallet integration
+- [x] Desktop app via Electron
+- [ ] Chrome Extension version
+- [ ] Support for multiple wallets (WalletConnect, Coinbase)
+- [ ] Batch minting
+- [ ] IPFS metadata upload
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. 

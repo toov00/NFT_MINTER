@@ -13,11 +13,11 @@ A user-friendly desktop + browser application designed to seamlessly mint NFTs o
 
 ### Prerequisites
 
-* Node.js (v16+)
+* Node.js (v20+)
 ```sh
   brew install nvm
-  nvm install 16
-  nvm use 16
+  nvm install 20
+  nvm use 20
 ```
 * MetaMask wallet extension or desktop app installed
 * A deployed ERC-721 smart contract (you'll need the ABI and contract address)

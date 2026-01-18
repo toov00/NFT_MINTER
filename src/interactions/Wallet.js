@@ -4,8 +4,8 @@ import { ADDRESS, ABI } from "../config.js";
 async function setupEthereum() {
   if (typeof window.ethereum === 'undefined') {
     console.error("MetaMask is not installed!");
-    alert("Please install MetaMask.");
-    return;
+    alert("Please install MetaMask extension.");
+    return null;
   }
 
   try {
@@ -13,7 +13,7 @@ async function setupEthereum() {
 
     if (accounts.length === 0) {
       alert("Please connect your wallet.");
-      return;
+      return null;
     }
 
     const provider = new ethers.BrowserProvider(window.ethereum);
@@ -30,7 +30,11 @@ async function setupEthereum() {
     return { provider, signer };
   } catch (error) {
     console.error("Error setting up Ethereum:", error);
-    alert("Failed to connect to MetaMask. Please check the console.");
+    if (error.code === 4001) {
+      alert("Please connect your MetaMask wallet.");
+    } else {
+      alert("Failed to connect to MetaMask. Please check the console.");
+    }
     return null;
   }
 }
@@ -53,6 +57,7 @@ async function mintNFT() {
 
     await tx.wait();
     console.log("Minted successfully!");
+    alert("🎉 NFT minted successfully!");
     
   } catch (error) {
     console.error("Error minting NFT:", error);

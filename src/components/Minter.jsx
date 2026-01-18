@@ -15,7 +15,7 @@ function Minter() {
   return (
     <div class="container">
         <div class="toggle">
-            <input type="checkbox" onClick={handleMint} />
+            <input type="checkbox" onClick={handleMint} disabled={loading} />
             <span class="button"></span>
             <span class="label">☁️</span>
         </div>

@@ -8,9 +8,10 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "dev": "vite",
     "start": "vite",
     "electron": "electron .",   
-    "dev": "concurrently \"npm run start\" \"npm run electron\"",
+    "dev:electron": "concurrently \"npm run start\" \"npm run electron\"",
     "package": "electron-packager . --overwrite --platform=win32 --arch=x64 --out=dist/ --icon=your-icon.ico"
   },
   "dependencies": {

@@ -44,12 +44,14 @@ A user-friendly desktop + browser application designed to seamlessly mint NFTs o
 
 ## Usage
 
-1. Start the application
+1. Start the development server
 ```sh
    npm run dev
 ```
-2. Connect your MetaMask wallet when prompted
-3. Click the mint button to create your NFT!
+2. Open your browser and navigate to `http://localhost:5173`
+3. Make sure MetaMask extension is installed and unlocked
+4. Connect your MetaMask wallet when prompted
+5. Click the mint button to create your NFT!
 
    ![Minting Interface](popupwindow.png)
 
@@ -65,7 +67,7 @@ A user-friendly desktop + browser application designed to seamlessly mint NFTs o
 - [x] Core minting functionality
 - [x] MetaMask wallet integration
 - [x] Desktop app via Electron
-- [ ] Chrome Extension version
+- [x] Browser web app (localhost)
 - [ ] Support for multiple wallets (WalletConnect, Coinbase)
 - [ ] Batch minting
 - [ ] IPFS metadata upload

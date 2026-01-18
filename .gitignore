@@ -25,4 +25,5 @@ dist-ssr
 
 .gitignore
 popupwindow1.png
+src/config_example.js
 

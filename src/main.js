@@ -10,14 +10,21 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 400,
-    height: 400,
+    height: 500,
+    minWidth: 350,
+    minHeight: 400,
     webPreferences: {
       nodeIntegration: false, 
       contextIsolation: true,
+      sandbox: true,
     },
   });
 
-  mainWindow.loadURL('http://localhost:5173'); 
+  // Load the development server URL
+  const devServerUrl = 'http://localhost:5173';
+  mainWindow.loadURL(devServerUrl).catch((err) => {
+    console.error('Failed to load URL:', err);
+  });
 }
 
 app.whenReady().then(() => {

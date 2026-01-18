@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { mintNFT } from '../interactions/Wallet.js'; 
-import './Minter.css';  
+import React, { useState, useCallback } from 'react';
+import { mintNFT } from '../interactions/Wallet.js';
+import { MESSAGE_TYPES, TX_HASH_DISPLAY_LENGTH } from '../constants.js';
+import './Minter.css';
 
 /**
  * Minter component - Provides UI for minting NFTs
@@ -8,31 +9,51 @@ import './Minter.css';
  */
 function Minter() {
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null);
-  const [messageType, setMessageType] = useState(null); // 'success' or 'error'
+  const [message, setMessage] = useState({ text: null, type: null });
 
-  const handleMint = async () => {
+  const formatTransactionHash = (txHash) => {
+    if (!txHash || typeof txHash !== 'string') return '';
+    return `${txHash.slice(0, TX_HASH_DISPLAY_LENGTH)}...`;
+  };
+
+  const handleMint = useCallback(async (event) => {
+    // Prevent checkbox from toggling
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
+    if (loading) {
+      return;
+    }
+    
     setLoading(true);
-    setMessage(null);
-    setMessageType(null);
+    setMessage({ text: null, type: null });
     
     try {
       const result = await mintNFT();
       
       if (result.success) {
-        setMessage(`🎉 NFT minted successfully! Transaction: ${result.txHash.slice(0, 10)}...`);
-        setMessageType('success');
+        const txHashDisplay = formatTransactionHash(result.txHash);
+        setMessage({
+          text: `NFT minted successfully. Transaction: ${txHashDisplay}`,
+          type: MESSAGE_TYPES.SUCCESS,
+        });
       } else {
-        setMessage(result.error || 'Failed to mint NFT');
-        setMessageType('error');
+        setMessage({
+          text: result.error || 'Failed to mint NFT',
+          type: MESSAGE_TYPES.ERROR,
+        });
       }
     } catch (error) {
-      setMessage(error.message || 'An unexpected error occurred');
-      setMessageType('error');
+      setMessage({
+        text: error.message || 'An unexpected error occurred',
+        type: MESSAGE_TYPES.ERROR,
+      });
     } finally {
       setLoading(false);
     }
-  };
+  }, [loading]);
 
   /* From Uiverse.io by Pradeepsaranbishnoi */ 
   return (
@@ -40,17 +61,19 @@ function Minter() {
         <div className="toggle">
             <input 
               type="checkbox" 
-              onClick={handleMint} 
+              onChange={handleMint}
+              onClick={handleMint}
               disabled={loading}
+              checked={false}
               aria-label="Mint NFT"
               aria-busy={loading}
             />
             <span className="button"></span>
             <span className="label" aria-hidden="true">☁️</span>
         </div>
-        {message && (
-          <div className={`message ${messageType}`} role="alert">
-            {message}
+        {message.text && (
+          <div className={`message ${message.type}`} role="alert">
+            {message.text}
           </div>
         )}
     </div>

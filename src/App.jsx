@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Minter from './components/Minter.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 
 /**
  * Main App component
@@ -8,9 +9,11 @@ import Minter from './components/Minter.jsx';
  */
 function App() {
   return (
-    <div className="App">
-      <Minter />
-    </div>
+    <ErrorBoundary>
+      <div className="App">
+        <Minter />
+      </div>
+    </ErrorBoundary>
   );
 }
 

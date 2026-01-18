@@ -66,8 +66,8 @@ A user-friendly desktop + browser application designed to seamlessly mint NFTs o
 
 - [x] Core minting functionality
 - [x] MetaMask wallet integration
-- [x] Desktop app via Electron
 - [x] Browser web app (localhost)
+- [ ] Desktop app via Electron
 - [ ] Support for multiple wallets (WalletConnect, Coinbase)
 - [ ] Batch minting
 - [ ] IPFS metadata upload
@@ -85,4 +85,3 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 ## License
 
 Distributed under the MIT License. 
-# NFT_MINTER

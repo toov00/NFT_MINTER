@@ -196,42 +196,6 @@ The application includes comprehensive error handling for common scenarios:
 
 All errors are displayed in the UI with appropriate styling, and detailed information is logged to the browser console for debugging.
 
-## Development
-
-### Code Quality
-
-The project uses ESLint with React-specific rules. Run the linter:
-
-```sh
-npm run lint
-```
-
-Auto-fix common issues:
-
-```sh
-npm run lint:fix
-```
-
-### Available Scripts
-
-- `npm run dev` - Start Vite development server
-- `npm run build` - Create production build
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Run ESLint with auto-fix
-- `npm run electron` - Launch Electron (requires dev server running)
-- `npm run dev:electron` - Run both dev server and Electron together
-
-### Adding Features
-
-When extending the application:
-
-1. Follow the existing error handling patterns in `Wallet.js`
-2. Use the custom `WalletError` class for blockchain-related errors
-3. Maintain accessibility standards in React components
-4. Add JSDoc comments for new functions
-5. Update this README with new configuration options
-
 ## Troubleshooting
 
 **MetaMask Not Detected**

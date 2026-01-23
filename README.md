@@ -1,73 +1,31 @@
 # NFT Minter
 
-A production-ready application for minting NFTs on Ethereum-compatible networks. Built with React and Electron, this tool provides a clean interface for interacting with ERC-721 smart contracts through MetaMask.
+A production-ready application for minting NFTs on Ethereum-compatible networks. Built with React, this tool provides a clean interface for interacting with ERC-721 smart contracts through MetaMask.
 
-## Overview
+## What It Does
 
-NFT Minter simplifies the process of minting non-fungible tokens by abstracting away the complexity of direct blockchain interactions. The application supports both browser-based and desktop deployments, making it accessible across different platforms and use cases.
+Simplifies the process of minting non-fungible tokens by abstracting away the complexity of direct blockchain interactions. The application runs as a browser-based web application, making it accessible across different platforms and use cases.
 
 The core functionality centers around a single-click minting interface that handles wallet connection, transaction signing, and confirmation feedback automatically. All blockchain interactions are managed through the ethers.js library, ensuring compatibility with standard Ethereum tooling.
 
-## Features
-
-**Wallet Integration**
+**Features:**
 - Seamless MetaMask connection with automatic account detection
 - Network validation and chain ID verification
 - Transaction status tracking with detailed error handling
-
-**User Interface**
 - Minimalist design focused on the minting action
 - Real-time feedback for transaction states
 - Accessible components with proper ARIA labels
-- Responsive layout that works across screen sizes
-
-**Developer Experience**
 - Comprehensive error handling with custom error classes
 - Configuration validation before transaction attempts
-- Detailed logging for debugging web3 interactions
-- ESLint configuration with React best practices
-
-**Deployment Options**
 - Browser-based application via Vite dev server
-- Desktop application via Electron wrapper
-- Chrome extension support (see Extension README)
-
-## Prerequisites
-
-Before getting started, ensure you have the following installed:
-
-**Node.js Version 20 or Higher**
-
-Install using nvm (Node Version Manager):
-
-```sh
-brew install nvm
-nvm install 20
-nvm use 20
-```
-
-**MetaMask Extension**
-
-Install the MetaMask browser extension from the official website. Ensure it's unlocked and connected to your target network before using the application.
-
-**Smart Contract**
-
-You need a deployed ERC-721 compatible smart contract with a public `mint` function. The contract must be deployed to your target network, and you'll need:
-- The contract's deployed address
-- The complete Application Binary Interface (ABI)
 
 ## Installation
 
-Clone the repository to your local machine:
+**Requirements:** Node.js 20+, MetaMask extension, deployed ERC-721 smart contract
 
-```sh
+```bash
 git clone https://github.com/toov00/NFT_MINTER.git
 cd NFT_MINTER
-```
-
-Install project dependencies:
-
-```sh
 npm install
 ```
 
@@ -86,15 +44,19 @@ The ABI should include at minimum the `mint` function signature. For a complete 
 
 ## Usage
 
-### Browser Mode
+### Quick Start
 
-Start the development server:
+1. Start the development server:
 
-```sh
+```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`. Open this URL in your browser and ensure MetaMask is installed and unlocked.
+2. Open your browser and navigate to `http://localhost:5173`
+
+3. Ensure MetaMask is installed and unlocked
+
+4. Click the mint button to connect your wallet and mint an NFT
 
 When you click the mint button, MetaMask will prompt you to:
 1. Connect your wallet (if not already connected)
@@ -103,52 +65,15 @@ When you click the mint button, MetaMask will prompt you to:
 
 After confirmation, the transaction will be submitted to the network. You'll receive visual feedback indicating success or failure, along with the transaction hash for verification on a block explorer.
 
-### Desktop Mode
-
-Run both the Vite server and Electron application simultaneously:
-
-```sh
-npm run dev:electron
-```
-
-This command starts the development server and launches the Electron window automatically. The desktop application connects to the same localhost server, providing a native app experience.
-
 ### Building for Production
 
 Create an optimized production build:
 
-```sh
+```bash
 npm run build
 ```
 
-The built files will be in the `dist` directory. For Electron packaging, use:
-
-```sh
-npm run package
-```
-
-This creates platform-specific executables in the `dist` folder.
-
-## Project Structure
-
-```
-NFT_MINTER/
-├── src/
-│   ├── components/
-│   │   ├── Minter.jsx       # Main minting component
-│   │   └── Minter.css       # Component styles
-│   ├── interactions/
-│   │   └── Wallet.js        # Blockchain interaction logic
-│   ├── config.js            # Contract configuration (user-edited)
-│   ├── config_example.js    # Example configuration template
-│   ├── App.jsx              # Root React component
-│   ├── main.jsx             # React entry point
-│   └── main.js              # Electron entry point
-├── dist/                    # Build output directory
-├── eslint.config.js         # ESLint configuration
-├── vite.config.js           # Vite build configuration
-└── package.json             # Project dependencies and scripts
-```
+The built files will be in the `dist` directory and can be deployed to any static hosting service.
 
 ## Configuration
 
@@ -196,6 +121,43 @@ The application includes comprehensive error handling for common scenarios:
 
 All errors are displayed in the UI with appropriate styling, and detailed information is logged to the browser console for debugging.
 
+## Project Structure
+
+```
+NFT_MINTER/
+├── src/
+│   ├── components/
+│   │   ├── Minter.jsx       # Main minting component
+│   │   ├── Minter.css       # Component styles
+│   │   └── ErrorBoundary.jsx # Error boundary component
+│   ├── interactions/
+│   │   └── Wallet.js        # Blockchain interaction logic
+│   ├── constants.js         # Application constants
+│   ├── config.js            # Contract configuration (user-edited)
+│   ├── config_example.js    # Example configuration template
+│   ├── App.jsx              # Root React component
+│   └── main.jsx             # React entry point
+├── dist/                    # Build output directory
+├── eslint.config.js         # ESLint configuration
+├── vite.config.js           # Vite build configuration
+└── package.json             # Project dependencies and scripts
+```
+
+## Examples
+
+See the project structure above for key files. Example usage patterns:
+
+**Basic Minting Flow:**
+1. User clicks mint button
+2. Application validates configuration
+3. MetaMask connection request
+4. Transaction approval
+5. Transaction submission
+6. Confirmation and feedback
+
+**Error Handling Example:**
+The application catches and displays errors at each step, providing clear feedback about what went wrong and how to fix it.
+
 ## Troubleshooting
 
 **MetaMask Not Detected**
@@ -209,53 +171,10 @@ All errors are displayed in the UI with appropriate styling, and detailed inform
 - Ensure you're on the correct network
 - Verify the contract is deployed and the `mint` function is public
 
-**Electron Window Blank**
-- Ensure the dev server is running on port 5173
-- Check the Electron console for connection errors
-- Verify `src/main.js` has the correct localhost URL
-
 **Build Errors**
 - Clear `node_modules` and reinstall: `rm -rf node_modules && npm install`
 - Check Node.js version matches requirements
 - Verify all dependencies are compatible
-
-## Security Considerations
-
-**Private Keys**
-- Never commit private keys or seed phrases to version control
-- The application never requests or stores private keys
-- All signing happens through MetaMask's secure environment
-
-**Contract Interaction**
-- Always verify contract addresses before use
-- Review contract code for unexpected behavior
-- Test on testnets before mainnet deployment
-
-**Network Security**
-- Use HTTPS in production environments
-- Validate all user inputs before blockchain submission
-- Implement rate limiting for production deployments
-
-## Browser Extension
-
-This project includes support for packaging as a Chrome extension. See the extension-specific documentation for installation and usage instructions. The extension manifest is located in `dist/manifest.json` after building.
-
-## Roadmap
-
-**Completed**
-- Core minting functionality with transaction confirmation
-- MetaMask wallet integration with error handling
-- Browser-based web application
-- Desktop application via Electron
-- Comprehensive error handling and user feedback
-
-**Planned**
-- Support for additional wallet providers (WalletConnect, Coinbase Wallet)
-- Batch minting functionality for multiple NFTs
-- IPFS metadata upload and pinning integration
-- Transaction history and receipt management
-- Network switching interface
-- Gas price estimation and optimization
 
 ## Contributing
 
@@ -274,16 +193,18 @@ Please ensure all code follows the project's ESLint configuration and includes a
 
 ## License
 
-This project is distributed under the MIT License. See the LICENSE file for details.
+MIT License
 
-## Support
+## Disclaimer
 
-For issues, questions, or feature requests, please open an issue on the GitHub repository. Include:
-- Your Node.js version
-- Browser and MetaMask versions
-- Network you're using
-- Steps to reproduce any errors
-- Relevant console logs (with sensitive data removed)
+This tool is for minting NFTs on networks you own or have explicit permission to interact with. Always verify contract addresses and test on testnets before mainnet deployment. Use responsibly and ensure you understand the gas costs and network fees associated with transactions.
+
+## Resources
+
+- [Ethers.js Documentation](https://docs.ethers.org/)
+- [MetaMask Documentation](https://docs.metamask.io/)
+- [ERC-721 Standard](https://eips.ethereum.org/EIPS/eip-721)
+- [React Documentation](https://react.dev/)
 
 ## Acknowledgments
 

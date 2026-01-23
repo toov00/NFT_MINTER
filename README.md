@@ -29,45 +29,29 @@ cd NFT_MINTER
 npm install
 ```
 
-Configure your smart contract by editing `src/config.js`. You can use `src/config_example.js` as a reference:
+Configure your smart contract by editing `src/config.js`:
 
 ```js
 export const ABI = [
   // Paste your contract's ABI array here
-  // This should include all function signatures, events, and errors
 ];
 
 export const ADDRESS = "0xYourContractAddressHere";
 ```
 
-The ABI should include at minimum the `mint` function signature. For a complete example, see `src/config_example.js` which contains a full ERC-721 ABI.
+The ABI should include at minimum the `mint` function signature. See `src/config_example.js` for a complete ERC-721 ABI example.
 
 ## Usage
 
 ### Quick Start
 
-1. Start the development server:
-
 ```bash
 npm run dev
 ```
 
-2. Open your browser and navigate to `http://localhost:5173`
-
-3. Ensure MetaMask is installed and unlocked
-
-4. Click the mint button to connect your wallet and mint an NFT
-
-When you click the mint button, MetaMask will prompt you to:
-1. Connect your wallet (if not already connected)
-2. Approve the transaction
-3. Confirm the gas fee
-
-After confirmation, the transaction will be submitted to the network. You'll receive visual feedback indicating success or failure, along with the transaction hash for verification on a block explorer.
+Open `http://localhost:5173` in your browser. Ensure MetaMask is installed and unlocked, then click the mint button. MetaMask will prompt you to connect your wallet, approve the transaction, and confirm the gas fee. After confirmation, the transaction will be submitted and you'll receive visual feedback with the transaction hash.
 
 ### Building for Production
-
-Create an optimized production build:
 
 ```bash
 npm run build
@@ -77,47 +61,18 @@ The built files will be in the `dist` directory and can be deployed to any stati
 
 ## Configuration
 
-### Contract Address
+The contract address must be a valid Ethereum address (42 characters starting with 0x). The ABI should be a JavaScript array containing function, event, and error definitions following the standard Solidity ABI JSON format. The `mint` function must be present and callable.
 
-The contract address must be a valid Ethereum address (42 characters starting with 0x). The application validates this before attempting any transactions.
-
-### ABI Format
-
-The ABI should be a JavaScript array containing function, event, and error definitions. Each entry must follow the standard Solidity ABI JSON format. The `mint` function must be present and callable.
-
-### Network Compatibility
-
-The application works with any Ethereum-compatible network that MetaMask supports. Common networks include:
-- Ethereum Mainnet
-- Ethereum Sepolia (testnet)
-- Polygon
-- Arbitrum
-- Optimism
-- Base
-
-Ensure your MetaMask is connected to the same network where your contract is deployed.
+The application works with any Ethereum-compatible network that MetaMask supports, including Ethereum Mainnet, Sepolia, Polygon, Arbitrum, Optimism, and Base. Ensure your MetaMask is connected to the same network where your contract is deployed.
 
 ## Error Handling
 
 The application includes comprehensive error handling for common scenarios:
 
-**Wallet Not Installed**
-- Clear message prompting MetaMask installation
-- Graceful degradation without blocking the UI
-
-**Connection Rejected**
-- User-friendly message when wallet connection is declined
-- No automatic retry to respect user choice
-
-**Transaction Failures**
-- Specific error messages for insufficient funds
-- Contract interaction errors with readable messages
-- Network error detection and reporting
-
-**Configuration Errors**
-- Validation of contract address format
-- ABI presence and structure checking
-- Helpful error messages pointing to configuration files
+- **Wallet Not Installed:** Clear message prompting MetaMask installation with graceful UI degradation
+- **Connection Rejected:** User-friendly message when wallet connection is declined, no automatic retry
+- **Transaction Failures:** Specific error messages for insufficient funds, contract errors, and network issues
+- **Configuration Errors:** Validation of contract address format and ABI structure with helpful error messages
 
 All errors are displayed in the UI with appropriate styling, and detailed information is logged to the browser console for debugging.
 
@@ -127,25 +82,23 @@ All errors are displayed in the UI with appropriate styling, and detailed inform
 NFT_MINTER/
 ├── src/
 │   ├── components/
-│   │   ├── Minter.jsx       # Main minting component
-│   │   ├── Minter.css       # Component styles
-│   │   └── ErrorBoundary.jsx # Error boundary component
+│   │   ├── Minter.jsx
+│   │   ├── Minter.css
+│   │   └── ErrorBoundary.jsx
 │   ├── interactions/
-│   │   └── Wallet.js        # Blockchain interaction logic
-│   ├── constants.js         # Application constants
-│   ├── config.js            # Contract configuration (user-edited)
-│   ├── config_example.js    # Example configuration template
-│   ├── App.jsx              # Root React component
-│   └── main.jsx             # React entry point
-├── dist/                    # Build output directory
-├── eslint.config.js         # ESLint configuration
-├── vite.config.js           # Vite build configuration
-└── package.json             # Project dependencies and scripts
+│   │   └── Wallet.js
+│   ├── constants.js
+│   ├── config.js
+│   ├── config_example.js
+│   ├── App.jsx
+│   └── main.jsx
+├── dist/
+├── eslint.config.js
+├── vite.config.js
+└── package.json
 ```
 
 ## Examples
-
-See the project structure above for key files. Example usage patterns:
 
 **Basic Minting Flow:**
 1. User clicks mint button
@@ -155,7 +108,6 @@ See the project structure above for key files. Example usage patterns:
 5. Transaction submission
 6. Confirmation and feedback
 
-**Error Handling Example:**
 The application catches and displays errors at each step, providing clear feedback about what went wrong and how to fix it.
 
 ## Troubleshooting
